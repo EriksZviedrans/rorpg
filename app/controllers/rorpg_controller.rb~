@@ -1,0 +1,10 @@
+class RorpgController < ApplicationController
+	def index
+	end
+	def conecting
+ 		render :layout => 'fancy'
+	end
+	def reconnecting
+		redirect_to  :controller => 'content_tool', :action => 'index'
+	end
+end

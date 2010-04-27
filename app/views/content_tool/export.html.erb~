@@ -1,0 +1,11 @@
+<!--<html> -->
+<div> 
+<% form_tag ({:action => "save_export"}) do  %>
+			<%= label_tag :database_name %>
+                        <p><%= select_tag :database, options_for_select(@arraydb) %></p><br />      
+			<%= submit_tag 'Export' -%>
+		<% end %>
+</div>
+
+
+

@@ -1,0 +1,11 @@
+<div>
+<%=h @schemas.to_s %>
+</div>
+
+<div>
+<%=h @csv.to_s %>
+</div>
+
+<div>
+<%=h  @employees %>
+</div>

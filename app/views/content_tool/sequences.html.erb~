@@ -1,0 +1,62 @@
+<!--html -->
+<div id="table"> 
+<%= link_to_function "Create Sequence", {:id =>"btnCreateTable"} %>  
+<div id="createtable" style="display:none;">
+		<% form_tag ({:action => "create_sequence"}) do  %>
+		<fieldset>
+			<%= label_tag :sequence_name %>
+ 			<p><%= text_field_tag :sequence_name,'' , :size => 25  %></p>
+			<%= label_tag :increment_by %>
+ 			<p><%= text_field_tag :increment_by,'' , :size => 10  %></p>
+			<%= label_tag :min_value %>
+ 			<p><%= text_field_tag :min_value,'' , :size => 10  %></p>
+			<%= label_tag :max_value %>
+ 			<p><%= text_field_tag :max_value,'' , :size => 10  %></p>
+			<%= label_tag :start_value %>
+ 			<p><%= text_field_tag :start_value,'' , :size => 10  %></p>
+			<%= label_tag :cache_value %>
+ 			<p><%= text_field_tag :cache_value,'' , :size => 10  %></p>
+			 <%= label_tag :cycled %>
+                        <p><%= select_tag :cycled, "<option>FALSE</option><option>TRUE</option>" %></p>
+			<%= label_tag :sequence_comments %>
+  			<p><%= text_area_tag :sequence_comments,'comments' ,:size => "22x4" %></p><br />
+	                        
+			<%= submit_tag 'Create Sequence', :onclick => "check_create_sequence(this.form);return false" -%>
+		</fieldset>
+		<% end %>
+</div>
+<% if objectsfounds_sequences? %>
+<% form_tag( :action => "del_sequences" ) do %>
+<table id="table" class="tablesorter"  border="0" cellspacing="0" cellpadding="0">
+<thead> 
+<% @sequences_list.each do |rows| %>
+       <tr>
+        <th><%= check_box_tag 'selAll', 'yes', false, :class => "selAll" %></th>
+	<% rows.each do |column_name| %>
+        <th name= "column_name"><%= h  column_name[0].upcase.gsub(/[_]/, ' ')  %></th> 
+   	<% end %>
+<% break end %>
+       </tr> 
+
+</thead> 
+<tbody> 
+<% @sequences_list.each do |row| %>
+       <tr>
+        <td><%= check_box_tag 'sequences[]',row['sequence_name'] ,false, :class => "items", :id => row['sequence_name'] %></td>
+	<% row.each do |column| %>
+		<% if column[0] == 'sequence_name' %>
+	<td id="sequence"><%= link_to column[1], {:id => row['sequence_name']},{:href =>'/content_tool/sequence/'+$dbtype+$schematype+'?view='+row['sequence_name']}%></td>
+		<% else %>
+	<td><%= h column[1] %></td>	
+		<% end %>
+        <% end %>
+       </tr>
+<% end %>
+</tbody> 
+</table>
+  <%= submit_tag("Drop Sequence") %>
+  <% end %> 
+<% else %> 
+<h4 id="objectnotfound" ><%= h "Objects Not Found" %></h4>
+<% end %> 
+</div>

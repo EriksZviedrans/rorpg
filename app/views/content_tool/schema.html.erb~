@@ -1,0 +1,12 @@
+<div id="createschema">
+		<% form_tag({:action => 'schema'}) do %>
+		<fieldset>
+			<label for="user_first_name">Schema Name:
+ 			<%= text_field :schema, :schema_name, :size => "25" -%></label>
+			<label for="user_last_name">Comments:
+  			<%= text_area :schema, :comments, :size => "29x4" -%></label>
+	
+			<%= submit_tag 'Create Schema' -%>
+		</fieldset>
+		<% end %>
+</div>

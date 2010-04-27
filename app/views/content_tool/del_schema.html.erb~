@@ -1,0 +1,6 @@
+<div>
+<%= @schema_names.join(", ") %>;
+</div>
+
+
+

@@ -1,0 +1,78 @@
+<!--html-->
+<div> 
+<%= link_to_function "Create Table", {:id =>"btnCreateTable"} %>  
+<div id="createtable" style="display:none;">
+		<% form_tag ({:action => "nexts_step"}) do  %>
+		<fieldset>
+			<%= label_tag :table_name%>
+ 			<p><%= text_field_tag :table_name,'' , :size => 25  %></p>
+			<%= label_tag :number_of_column %>
+ 			<p><%= text_field_tag :number_of_column,'',:size => 25 %></p>
+                        <%= label_tag :oids %>
+                        <p><%= select_tag 'oids', "<option>TRUE</option><option>FALSE</option>" %></p>
+			<%= label_tag :table_comments %>
+  			<p><%= text_area_tag :table_comments,'comments' ,:size => "22x4" %></p><br />
+	                        
+			<%= submit_tag 'Nexts', :onclick => "check_create_table(this.form);return false" -%>
+		</fieldset>
+		<% end %>
+</div>
+<p><%= label_tag :full_name, $dbtype+"."+$schematype+"."+$table %></p>
+<% form_tag( :action => "add_row_table" ) do %>
+<table id="table" class="tablesorter"  border="0" cellspacing="0" cellpadding="0"> 
+<% if objectsfounds? %>
+
+<thead> 
+<tr> 
+        <th><input type="checkbox" name="selAll" class="selAll"/></th>
+<% $info.each do |rows| %>
+      <th name= "column_name"><%= label_tag rows['name']+"("+rows['format_type'] +")" %></th>
+<% end %>
+</tr> 
+</thead>
+
+<tbody> 
+<% $idr = 0 %>
+
+<% $info_struct.each do |row| %>
+       <tr id="row_<%=h $idr = $idr+1 -%>"> 
+        <td><input type="checkbox" name="items[]" class="items"/></td> 
+	<% $idc = 0 %>
+	  <% row.each do |column| %>
+        	<td><%= text_field_tag "colums[]", column[1] %></td>
+	<% $idc += 1 %>   
+	<%  end %>
+	
+       </tr>  
+<% end %>
+</tbody>
+
+<% else %> 
+<thead> 
+<tr> 
+        <th><input type="checkbox" name="selAll" class="selAll"/></th>
+<% $info.each do |rows| %>
+      <th name= "column_name"><%= h rows["name"]+" ("+rows["format_type"] +")" %></th>
+<% end %>
+</tr> 
+</thead>
+<tbody> 
+<% $idr = 0 %>
+	 <tr id="row_<%=h $idr = $idr+1 -%>"> 
+ 	<td><input type="checkbox" name="items[]" class="items"/></td>
+	<% $idc = 0 %>
+	<% $info.each do |rows| %>
+	<% $idc +=1 %>
+        <td class="txt"><%= text_field_tag "colums[]" %></td> 
+	<% end %>
+       </tr>  
+</tbody> 
+<% end %> 
+</table>
+<p><%= link_to_function "Add row", {:id =>"AddRow"}  %><% if @image_file == true %>
+	<%= link_to_function "View binary like ..." %>
+<% end %></p><br/>
+<%= submit_tag "Update", :disabled => true, :id => "update"  %>
+<% end %> 
+</div>
+

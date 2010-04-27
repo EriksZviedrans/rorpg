@@ -1,0 +1,195 @@
+* {
+  margin: 0;
+  padding:0;
+}
+
+div#button {
+height : 23px;
+margin-left :100px;
+}
+#button a {
+color : #fff;
+background : inherit;
+text-decoration : none;
+padding-left : 10px;
+line-height : 23px;
+font-weight : bold;
+}
+#button a span {
+padding-right : 10px;
+}
+#button ul {
+list-style : none;
+padding : 0;
+}
+#button li {
+float : left;
+margin : 0 0 0 5px;
+padding-bottom : 4px;
+}
+#button a, #button a span {
+display : block;
+float : left;
+}
+#button a:hover, #button .current {
+color : #fff;
+background : #a9bc52 url(../images/tabl.gif) no-repeat left top;
+height : 23px;
+}
+#button a:hover span, #button .current span {
+background : url(../images/tabr.gif) no-repeat right top;
+height : 23px;
+cursor : pointer;
+}
+
+/*-------------------------------------------------------------------------*/
+body#postgresql_tool {
+width : 100%;
+font : 0.74em Arial, sans-serif;
+line-height : 1.5em;
+background : #393939;
+color : #fff;
+}
+a:link, a:active, a:visited {
+  color: #CD0000;
+}
+
+a:hover {
+  color: #F70000;
+}
+
+input {        
+margin-bottom : 5px;
+}
+
+p { 
+line-height: 150%; 
+}
+div#container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80em;
+  margin : 50px auto;
+  padding-top : 10px;
+  border-style:solid;
+  border-width:2px;
+  border-color:#d0eb55;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+div#header { 
+  background : url(../images/main.png) no-repeat top;
+  background-position : center top;
+  text-align : center;
+  padding-bottom : 10px;
+  font : bold 1.2em Arial;
+  color : #d0eb55;
+  padding : 10px 0 195px 0;
+  letter-spacing : -1px;
+}
+div#content {
+  padding : 0;
+  width : 700px;
+  margin-top : -50px;
+  padding: 10px  0 100px 50px;
+
+}
+div#content h4 {
+  font : 1em Arial;
+}
+div#fancycontent {
+  width: 270px;
+  padding: 10px;
+}
+div#sidebar {
+  	width : 400px;
+        padding-left: 10px;
+	float : left;
+	margin-top : -50px;
+}
+
+fieldset {
+  display: block;
+  border: 1px;
+  width: 255px;
+  margin: 20px;
+  padding: 10px;
+  background: #757575;
+   -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+fieldset > label {
+  display: block;
+  margin-bottom: 2px;
+}
+
+form#login_form {
+  border: 1px;
+  padding: 4px;
+
+}
+
+form#login_form label {
+  font-size: 90%;
+}
+
+form#login_form input[type=text],
+form#login_form input[type=password] {
+  width: 125px;
+}
+div#notice{
+position : absolute;
+ color : #d0eb55;
+ border : 1px;
+ padding-left : 3px;
+ padding-top : 8px;
+ width : 130px;
+}
+/* accordion menu*/
+.menu_list {	
+	width: 150px;
+}
+.menu_head {
+	color : #fff;
+	padding: 5px 10px;
+	cursor: pointer;
+	position: relative;
+	margin:1px;
+       font-weight:bold;
+       background: #a9bc52 url(../images/left.png) center right no-repeat;
+ -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.menu_head#postgres{    
+	padding: 5px 10px;
+	cursor: pointer;
+
+	margin:1px;
+       font-weight:bold;
+  background: #757575 url(../images/left.png) center right no-repeat;
+}
+.menu_body {
+	display:none;
+}
+.menu_body a{
+  display:block;
+  color:#006699;
+  background-color:#EFEFEF;
+  padding-left:10px;
+  font-weight:bold;
+  text-decoration:none;
+ -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.menu_body a:hover{
+  color: #000000;
+  text-decoration:underline;
+
+  }
+

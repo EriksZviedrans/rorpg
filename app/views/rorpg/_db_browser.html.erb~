@@ -1,0 +1,66 @@
+<!--<html>-->
+<div style="float:left" > 
+<strong>&nbsp;<%= h params[:host] %></strong>
+ <ul id="db_browser" class="filetree">
+  <li class="expandable"><span id="databases"><%= link_to_function("PostgreSQL") %> (<%= @listdb.count %>)</span>
+   <ul><% $listdb.each do |db| %>
+    <li><span id="database"><%= link_to_function(db['datname']) %></span>
+     <ul>
+      <li><%= link_to("Schemas",{:id => db['datname']},{:id => "schemas"}) %>
+       
+        <ul><% $schemas.each do |schema| %>
+        <li><%= link_to(schema['schema_name'], {:id =>schema['schema_name']},{:id => "schemas",:href =>'/content_tool/db/'+db['datname']+'?schema='+schema['schema_name']})%>
+         <ul>
+
+          <li><span id="tables"><%= link_to_function("Tables") %> (<%= $tables.count %>)</span>
+           <ul><% $tables.each do |tables| %>
+            <li><%= link_to_function(tables['table_name'], :id =>"table") %></li>
+           <% end %>
+            <% if $tables.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+
+          <li><span id="views"><%= link_to_function("Views") %>(<%= $views.count %>)</span>
+           <ul><% $views.each do |views| %>
+            <li><%= link_to_function(views['table_name'], :id =>"view") %></li>
+           <% end %>
+            <% if $views.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+
+          <li><span id="sequences"><%= link_to_function("Sequences") %>(<%= $sequences.count %>)</span>
+           <ul><% $sequences.each do |sequences| %>
+            <li><%= link_to_function(sequences['sequence_name'], :id =>"sequence") %></li>
+           <% end %>
+            <% if $sequences.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+
+          <li><span id="functions"><%= link_to_function("Functions") %>(<%= $functions.count %>)</span>
+           <ul><% $functions.each do |functions| %>
+            <li><%= link_to_function functions['routine_name'], {:id =>"function"} %>
+            </li>
+           <% end %> 
+            <% if $functions.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+
+         </ul>                                               
+        </li>						    
+       <% end %></ul>
+
+      </li>
+     </ul>
+    </li>
+   <% end %></ul>
+  </li> 
+ </ul>
+</div>

@@ -1,0 +1,51 @@
+<!--html -->
+<div id="table"> 
+<%= link_to_function "Create Sequence", {:id =>"btnCreateTable"} %>  
+<div id="createtable" style="display:none;">
+		<% form_tag ({:action => "create_sequence"}) do  %>
+		<fieldset>
+			<%= label_tag :sequence_name %>
+ 			<p><%= text_field_tag :sequence_name,'' , :size => 25  %></p>
+			<%= label_tag :increment_by %>
+ 			<p><%= text_field_tag :increment_by,'' , :size => 10  %></p>
+			<%= label_tag :min_value %>
+ 			<p><%= text_field_tag :min_value,'' , :size => 10  %></p>
+			<%= label_tag :max_value %>
+ 			<p><%= text_field_tag :max_value,'' , :size => 10  %></p>
+			<%= label_tag :start_value %>
+ 			<p><%= text_field_tag :start_value,'' , :size => 10  %></p>
+			<%= label_tag :cache_value %>
+ 			<p><%= text_field_tag :cache_value,'' , :size => 10  %></p>
+			 <%= label_tag :cycled %>
+                        <p><%= select_tag :cycled, "<option>FALSE</option><option>TRUE</option>" %></p>
+			<%= label_tag :sequence_comments %>
+  			<p><%= text_area_tag :sequence_comments,'comments' ,:size => "22x4" %></p><br />
+	                        
+			<%= submit_tag 'Create Sequence', :onclick => "check_create_sequence(this.form);return false" -%>
+		</fieldset>
+		<% end %>
+</div>
+<p><%= label_tag :full_name, $dbtype+"."+$schematype+"."+@sequence%></p>
+<table id="table" class="tablesorter"  border="0" cellspacing="0" cellpadding="0">
+<thead> 
+<tr> 
+<% $info_struct.each do |rows| %>
+	<% rows.each do |column_name| %>
+      <th name= "column_name"><%= h  column_name[0].upcase.gsub(/[_]/, ' ') %></th>
+   	<% end %>
+<% break end %>
+</tr> 
+
+</thead>
+<tbody> 
+<% $info_struct.each do |row| %>
+       <tr> 
+	<% row.each do |column| %>
+        <td class="txt"><%= h column[1] %></td>   
+        <% end %>
+       </tr>  
+<% end %>
+</tbody>
+</table>
+</div>
+

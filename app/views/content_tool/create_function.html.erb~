@@ -1,0 +1,13 @@
+<!--<html>-->
+
+
+
+<h3><%= h @query %></h3>
+
+<h3><%= h @arguments.length %></h3>
+
+<h3><%= h @argumentsq %></h3>
+
+
+
+

@@ -1,0 +1,41 @@
+<!--html -->
+<div> 
+<%= link_to_function "Create Database", {:id =>"btnCreateTable"} %>  
+<div id="createtable" style="display:none;">
+		<% form_tag ({:action => "create_db"}) do  %>
+		<fieldset>
+			<%= label_tag :database_name %>
+ 			<p><%= text_field_tag :database_name,'' , :size => 25  %></p>
+                        <%= label_tag :encoding %>
+                        <p><%= select_tag :encoding, options_from_collection_for_select(@db_list, :datname, :datname ) %></p><br />
+	                        
+			<%= submit_tag 'Create Database', :onclick => "check_create_db(this.form);return false" -%>
+		</fieldset>
+		<% end %>
+</div>
+<% form_tag( :action => "del_db" ) do %>
+<table id="table" class="tablesorter"  border="0" cellspacing="0" cellpadding="0">
+<thead> 
+       <tr>
+        <th> </th>
+        <th name= "column_name">DATABASE</th> 
+       </tr> 
+</thead> 
+<tbody> 
+<% @dblist.each do |row| %>
+       <tr>
+        <td><%= radio_button_tag 'db[]',row['datname'] ,false, :class => "items", :id => row['datname'] %></td>
+	<% row.each do |column| %>
+		<% if column[0] == 'datname' %>
+	<td id="database"><%= h column[1]  %></td>
+		<% else %>
+	<td><%= h column[1] %></td>	
+		<% end %>
+        <% end %>
+       </tr>
+<% end %>
+</tbody> 
+</table>
+  <%= submit_tag("Drop Database") %>
+  <% end %> 
+</div>

@@ -1,0 +1,2 @@
+module RorpgHelper
+end

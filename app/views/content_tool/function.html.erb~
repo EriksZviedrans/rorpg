@@ -1,0 +1,70 @@
+<!--html-->
+<div>
+<%= link_to_function "Create Function", {:id =>"btnCreateTable"} %>  
+<div id="createtable" style="display:none;">
+		<% form_tag ({:action => "create_function"}) do  %>
+		<fieldsetfunction>
+			<%= label_tag :function_name %>
+ 			<p><%= text_field_tag :function_name,'' , :size => 31  %></p>
+			<%= label_tag :returns %>
+ 			<p><%= select_tag :returns, options_from_collection_for_select(@types, :typec, :typec) %>
+	    		<%= select_tag :returns_type, "<option> </option><option>[]</option>" %></p>
+			<%= label_tag :arguments %>
+			<table id="addarguments", border="1">
+			<thead> 
+			<tr>
+			<th>Name</th>
+			<th>Type</th>
+			</tr>
+			</thead>
+			<tbody>
+			 <tr> 
+  			<td><%= text_field_tag 'arguments[]','' , :size => 15  %> </td> 
+			<td><%= select_tag 'arguments_type[]', options_from_collection_for_select(@types, :typec, :typec) %><%= select_tag "arguments_type_of_type[]", "<option> </option><option>[]</option>" %></td>
+		   	</tr>
+			</tbody>
+	                </table>
+			<p><%= link_to_function "Add another arguments", {:id =>"btnAddArguments"} %> <%= link_to_function "Delete last arguments", {:id =>"btnDelArguments"} %></p>
+			<%= label_tag :new_definition %>
+			<p><%= text_area_tag :new_definition,'definition' ,:size => "43x6" %></p>
+			<table><tbody><tr>
+			<td><%= label_tag :execution_cost %>
+			<p><%= text_field_tag :execution_cost,'100' , :size => 25  %></p></td>
+			<td><%= label_tag :language %>
+                        <p><%= select_tag :language, "<option>sql</option><option>plpgsql</option>" %></p></td>
+			<td><%= label_tag :properties %>
+                        <p><%= select_tag :properties, "<option>VOLATILE</option><option>IMMUTABLE</option><option>STABLE</option>" %></p></td>
+			</tr></tbody></table>
+			<%= label_tag :function_comments %>
+  			<p><%= text_area_tag :function_comments,'comments' ,:size => "43x4" %></p><br />
+			<%= submit_tag 'Create Function', :onclick => "check_create_function(this.form);return false" -%>
+		</fieldsetfunction>
+		<% end %>
+</div>
+<% $info_struct.each do |row| %>
+<table id="table" class="tablesorter"  border="0" cellspacing="0" cellpadding="0"> 
+<thead> 
+<tr> 
+      <th>FUNCTION NAME</th>
+      <th>ARGUMENTS</th>
+      <th>RETURNS</th>
+      <th>LANGUAGE</th>
+      <th>OWNER</th>
+</tr> 
+</thead>
+<tbody> 
+       <tr> 
+        <td class="txt"><%= h row['name'] %></td> 
+	<td class="txt"><%= h row['argument'] %></td> 
+	<td class="txt"><%= h row['returns'] %></td>
+	<td class="txt"><%= h row['language'] %></td>
+        <td class="txt"><%= h row['owner'] %></td>
+       </tr>  
+</tbody> 
+</table>
+<%= label_tag :definition %>
+<p><%= text_area_tag :definition, row['definition'],:size => "46x12" %></p>
+<% end %>
+<div>
+
+

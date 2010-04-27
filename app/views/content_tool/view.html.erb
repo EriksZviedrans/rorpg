@@ -1,0 +1,57 @@
+<!--html -->
+<div id="table"> 
+<%= link_to_function "Create View", {:id =>"btnCreateTable"} %>  
+<div id="createtable" style="display:none;">
+		<% form_tag ({:action => "create_view"}) do  %>
+		<fieldsetview>
+			<%= label_tag :view_name %>
+ 			<p><%= text_field_tag :view_name,'' , :size => 25  %></p>
+			<%= label_tag :view_definition %>
+  			<p><%= text_area_tag :view_definition,'-- EXAMPLE SELECT table_name.colums_name, table_name.colums_name FROM schema_name.table_name JOIN schema_name.tabel_name ON schema_name.tabel_name.colums_name = schema_name.tabel_name.colums_name' ,:size => "60x8" %></p>
+			<%= label_tag :view_comments %>
+  			<p><%= text_area_tag :view_comments,'comments' ,:size => "22x4" %></p><br />
+	                        
+			<%= submit_tag 'Create View', :onclick => "check_create_view(this.form);return false" -%>
+		</fieldsetview>
+		<% end %>
+</div>
+<p><%= label_tag :full_name, $dbtype+"."+$schematype+"."+@view %></p>
+<table id="table" class="tablesorter"  border="0" cellspacing="0" cellpadding="0">
+<% if objectsfounds? %>
+<thead> 
+<tr> 
+        <th><input type="checkbox" name="selAll" class="selAll"/></th>
+<% $info_struct.each do |rows| %>
+	<% rows.each do |column_name| %>
+      <th name= "column_name"><%= h  column_name[0] %></th>
+   	<% end %>
+<% break end %>
+</tr> 
+
+</thead>
+<tbody> 
+<% @id = 0 %>
+<% $info_struct.each do |row| %>
+       <tr id="row_<%=h @id = @id+1 -%>"> 
+        <td><input type="checkbox" name="items[]" class="items"/></td> 
+	<% row.each do |column| %>
+        <td class="txt"><%= h column[1] %></td>   
+        <% end %>
+       </tr>  
+<% end %>
+</tbody>
+<% else %> 
+<thead> 
+<tr> 
+        <th><input type="checkbox" name="selAll" class="selAll"/></th>
+<% $info.each do |rows| %>
+	<% rows.each do |column_name| %>
+      <th name= "column_name"><%= h  column_name[1] %></th>
+   	<% end %>
+<% end %>
+</tr> 
+</thead>
+<% end %> 
+</table>
+</div>
+

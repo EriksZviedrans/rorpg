@@ -1,0 +1,10 @@
+<!--<html> -->
+<ul>
+<li><%=  file_field_tag 'attachment' %> </a></li>
+<li><%= link_to   '<span>Export</span>', {:action => "export"}, {:class => "current"}  -%> </a></li>
+<li><%= link_to   '<span>Database List</span>', {:action => "dblist"}, {:class => "current"}  -%> </a></li>
+<li id="refresh"><%= link_to   '<span><h8>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h8>Refresh</span>', {:action => 'refresh'}, {:class => "current"}  -%> </a></li>
+<li><%= link_to   '<span>rorpg Homepage</span>', "http://rorpg.erika-blogs.com", {:class => "current"}  -%> </a></li>
+<li><%= link_to   '<span>PostgreSQL Homepage</span>', "http://www.postgresql.org", {:class => "current"}  -%> </a></li>
+<li><%= link_to '<span>Close Connection</span>', {:action => "closecon"}, {:class => "current"} -%> </a></li>
+</ul>

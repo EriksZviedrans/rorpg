@@ -1,0 +1,26 @@
+<!--html-->
+<div id="fancycontent">
+<strong><font size="4" color="#d0eb55">PostgreSQL - New Server </font></strong>
+<% form_tag ({:controller => 'rorpg', :action => 'main', :id => @fancy}) do%>
+<p><label for="server_host">Host:</label><br/>
+<input type="text" name="host" value="localhost"/></p>
+
+<p><label for="sever_name">Name:</label><br/>
+<input type="text" name="name" value="localhost"/></p>
+    
+<p><label for="server_port">Port:</label><br/>
+<input type="text" name="port" value="5432"/></p>
+
+<p><label for="server_database">Database:</label><br/>
+<input type="text" name="database" value="postgres"/></p>
+
+<p><label for="server_username">Username:</label><br/>
+<input type="text" name="username" value="blog"/></p>
+
+<p><label for="server_password">Password:</label><br/>
+<input type="password" name="password" value="ruby"/></p>
+
+<%= submit_tag "Connect" %>
+<% end %>
+<%= link_to 'Back', {:controller => 'rorpg', :action => 'index' } %>
+</div>

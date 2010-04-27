@@ -1,0 +1,71 @@
+class ContentTool < ActiveRecord::Base
+	validates_presence_of :schema_name, :schema_comments
+private
+        def self.dbconn(host, port, username, password, database)
+                   return PGconn.new(host, port, '', '', database, username, password)
+        end
+        
+        def self.version(conn)
+               # return conn.exec("SELECT version()")
+                 res  = conn.exec('SELECT version()')
+                 res.each do |row|
+	                row.each do | version|
+                                     return  version[1]
+	                end
+	        end
+        end
+
+        def self.dblist(conn)
+                return conn.exec("SELECT datname FROM pg_database WHERE datname != 'template0' AND datname != 'template1'")
+        end
+       	
+        def self.schema(conns)
+		return conns.exec("SELECT schema_name, 
+	                                  schema_owner, 
+	                                  catalog_name, 
+	                                  pg_catalog.obj_description(pg_namespace.oid) AS __Comments
+                                FROM information_schema.schemata
+                                        LEFT JOIN pg_namespace  ON  nspname = schema_name
+	                                WHERE schema_name != 'pg_toast' 
+		                        AND schema_name != 'pg_catalog'
+		                        AND schema_name != 'pg_temp_1'
+		                        AND schema_name != 'pg_toast_temp_1'
+		                        AND schema_name != 'information_schema'")
+        end
+	
+	def self.tables(conntable,schematype)
+		return conntable.exec("SELECT table_name FROM information_schema.tables WHERE table_schema='#{schematype}'")
+	end
+	def self.views(connview,schematype)
+		return connview.exec("SELECT table_name FROM information_schema.views WHERE table_schema='#{schematype}'")
+	end
+        def self.sequences(connsequences,schematype)
+		return connsequences.exec("SELECT sequence_name FROM information_schema.sequences WHERE sequence_schema='#{schematype}'")
+	end
+	def self.functions(connfunctions,schematype)
+		return connfunctions.exec("SELECT routine_name FROM information_schema.routines WHERE routine_schema='#{schematype}'")
+	end
+
+	def self.table_column_name(conninfo,table,schematype)
+		return conninfo.exec("SELECT a.attname FROM   pg_catalog.pg_attribute a  
+		WHERE a.attnum > 0
+     		AND NOT a.attisdropped
+     		AND a.attrelid = ( SELECT c.oid FROM pg_catalog.pg_class c LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+         			WHERE c.relname ~ '^(#{table})$'
+     		)")
+	end
+	def self.table_columns(conninfo,table,schematype)
+		return conninfo.exec("SELECT * FROM #{schematype}.#{table}")
+	end
+	def self.create_schema(conninfo,schema,comments)
+                return conninfo.exec("CREATE SCHEMA #{schema};
+                COMMENT ON SCHEMA #{schema} IS '#{comments}';")
+	end
+        def self.drop_schema(conninfo,schemas)
+                return conninfo.exec("DROP SCHEMA #{schemas}")
+        end
+        def self.drop_tables(conninfo,tables,schema)
+                return conninfo.exec("DROP TABLE #{schema.tables}")
+        end
+
+end

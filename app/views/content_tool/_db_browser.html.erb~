@@ -1,0 +1,65 @@
+<!--<html>-->
+<div style="float:left" > 
+<strong>&nbsp;<%= h params[:host] %></strong>
+ <ul id="db_browser" class="filetree">
+  <li class="expandable"><span id="databases"><%= link_to ("PostgreSQL", {:id =>"databases"},{:id =>"databases", :href => '/content_tool/dblist/'}) %> (<%= $listdb.count %>)</span>
+   <ul><% $listdb.each do |db| %>
+    <li><span id="database"><%= link_to_function(db['datname']) %></span>
+     <ul>
+      <li><%= link_to("Schemas",{:id => db['datname']},{:id => "schemas", :href => '/content_tool/db/'+db['datname']}) %>
+       
+        <ul><% $schemas.each do |schema| %>
+        <li><%= link_to(schema['schema_name'], {:id =>schema['schema_name']},{:id => "schema",:href =>'/content_tool/db/'+db['datname']+'?schema='+schema['schema_name']})%>
+         <ul>
+
+          <li><%= link_to ("Tables",{:id => "tables"},{ :id =>"tables", :href =>'/content_tool/tables/'+db['datname']+schema['schema_name']}) %> (<%= $tables.count %>)
+           <ul><% $tables.each do |tables| %>
+            <li><%= link_to (tables['table_name'],{:id => tables['table_name']},{ :id =>"browser_table", :href =>'/content_tool/table/'+db['datname']+schema['schema_name']+'?table='+tables['table_name']}) %></li>
+           <% end %>
+            <% if $tables.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+	      
+          <li><%= link_to("Views",{:id => "views"},{ :id =>"views", :href =>'/content_tool/views/'+db['datname']+schema['schema_name']}) %>(<%= $views.count %>)
+           <ul><% $views.each do |views| %>
+            <li><%= link_to(views['view_name'],{:id => views['view_name']}, {:id =>"view", :href =>'/content_tool/view/'+db['datname']+schema['schema_name']+'?view='+views['view_name']}) %></li>
+           <% end %>
+            <% if $views.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+
+          <li><%= link_to("Sequences",{:id => "sequences"},{ :id =>"sequences", :href =>'/content_tool/sequences/'+db['datname']+schema['schema_name']}) %>(<%= $sequences.count %>)
+           <ul><% $sequences.each do |sequences| %>
+            <li><%= link_to(sequences['sequence_name'],{:id => sequences['sequence_name'] }, {:id =>"sequence", :href =>'/content_tool/sequence/'+db['datname']+schema['schema_name']+'?sequence='+sequences['sequence_name']}) %></li>
+           <% end %>
+            <% if $sequences.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+
+          <li><%= link_to("Functions",{:id => "functions"},{ :id =>"functions", :href =>'/content_tool/functions/'+db['datname']+schema['schema_name']}) %>(<%= $functions.count %>)
+           <ul><% $functions.each do |functions| %>
+            <li><%= link_to(functions['_function_name'], {:id =>functions['_function_name']},{ :id =>"function", :href =>'/content_tool/function/'+db['datname']+schema['schema_name']+'?function='+functions['_function_name']} )%></li>
+           <% end %> 
+            <% if $functions.count == 0 %>
+             <li><%= link_to_function "Object Not Found", {:id =>"objectnotfound"} %></li>
+	    <% end %>
+           </ul>
+          </li>
+
+         </ul>                                               
+        </li>						    
+       <% end %></ul>
+
+      </li>
+     </ul>
+    </li>
+   <% end %></ul>
+  </li> 
+ </ul>
+</div>
