@@ -1,8 +1,0 @@
-<h2>Form Data - display</h2>
-
-  Name: <%= @name %>;
-  Tools: <%= @tools.join(", ") %>; 
-  Platforms: <%= @platforms.join(", ") %>; 
-  Schemas: <%= @schemas.join(", ") %>; 
-  <hr>
-  <%= debug(params) %> 

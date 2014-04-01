@@ -1,2 +1,0 @@
-class Contenttool < ActiveRecord::Base
-end

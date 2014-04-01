@@ -1,6 +1,0 @@
-<div id="button">
-<ul>
-<li><%= link_to   '<span>Connecting to the PG Database</span>', {:controller => "rorpg", :action => "conecting"}, {:class => "connect"}  -%></a></li>
-<li><%= link_to   '<span>rorpg Homepage</span>', "http://rorpg.erika-blogs.com", {:class => "current"}  -%></a></li>
-<ul>
-</div>
