@@ -1,0 +1,17 @@
+BAKALAURA DARBA PRAKTISKĀ DAĻA. MANS PIRMAIS RUBY ON RAILS PROJEKTS.
+
+Bakalaura darbs. Zinātniskais vadītājs: dr. paed. N. Bogdanova.
+
+Darba satur 58 lappuses, 2 shēmas, 11 tabulas, 10 attēlus, 18 literāros avotus, 1 CD - disks.
+Viena no labākajām datu bāzēm PostgreSQL ir spēcīga, atvērtā koda objekt-relāciju datu bāzes pārvaldībās sistēma ar vairāk nekā 15 gadu darba pieredzi. Šai datu bāzei ir pietiekami daudz administrēšanas rīku, kuri ir gan komerciālie, gan bezmaksas. Izstrādājot jaunu rīku PostgreSQL datu bāzei, ir ņemti vērā esošo rīku funkcionalitātes iespējas un nepilnības. Jaunais rīks ir izstrādāts izmantojot ietvaru Ruby On Rails. Šī ietvara galvenā iezīme ir tāda, ka tā pielieto Model – View – Controller (MVC) izstrādes arhitektūru, kura pamatā ir visa web projekta sadalīšana loģiskos vienumos. Administrēšanas rīks PostgreSQL spēj veikt administrēšanas funkcijas neatkarīgi no operētājsistēmas platformas. Administrēšanas rīkā ir pamata funkcijas, kas ir nepieciešamas PostgreSQL administrēšanai, bet laika gaitā tiks pievienotas arī specifiskas funkcijas.
+POSTGRESQL, ADMINISTRĒŠANAS RĪKS, RUBY ON RAILS, MVC, ATVERTAIS, PIRMKODS
+
+
+
+BACHELOR WORK PRACTICAL PART. MY FIRST RUBY ON RAILS PROJECT.
+
+Bachelor Work. The supervisor of studies: dr. paed. N. Bogdanova
+
+Work contains 58 pages, 2 schemas, 10 illustrations, 11 tables, 18 literary sources, 1 CD - disc.
+Many developers selected variety of databases and somebody can directly choose the PostgreSQL database, which is a powerful, open source object relational database management system with over 15 years experience. PostgreSQL database has a lot of administration tools, since it is an open source database. In developing a new tool for PostgreSQL database takes into account the tools and functionality as possible gaps in existing administrations tools. The new tool has been developed using a framework Ruby On Rails. This tool uses the MVC software architecture, where based is all web sites division of logical items. PostgreSQL administration tool capable of performing administrative functions, regardless of operating system platforms. The administration tool is the basic functions that are necessary for PostgreSQL administration.
+POSTGRESQL, ADMINISTRATION TOOL, RUBY ON RAILS, MVC, OPEN SOURCE
